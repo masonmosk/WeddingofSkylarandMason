@@ -24,6 +24,10 @@ Sheet: **Wedding RSVPs — Mason & Skylar** (Google Drive).
 Each RSVP becomes a row; if the same email submits again, their row is updated rather than duplicated.
 If you edit the script later, use **Deploy → Manage deployments → Edit → New version** so the URL stays the same.
 
+### Manager view
+
+The footer's **Manager** link (or `/#manager`) shows RSVPs, headcounts per event, search and CSV export. The PIN is checked by the Apps Script against the `MANAGER_PIN` Script Property (Apps Script → Project Settings → Script Properties) — it is never in this repo. Eight wrong PINs lock it for 15 minutes.
+
 ## 3. Deploy to Vercel
 
 In Vercel: **Add New → Project → Import** this GitHub repo. Framework preset: *Other*, no build command, output directory left blank. Every push to `main` redeploys automatically.
