@@ -13,25 +13,16 @@ rsvpEmail: '',         // fallback email if no endpoint is set
 
 Placeholders to confirm as plans firm up: welcome dinner venue/time, ceremony beach (currently Carmel River State Beach), hotel booking/group rate, RSVP deadline (March 1, 2027), registry.
 
-## 2. Collect RSVPs in a Google Sheet (free, ~5 min)
+## 2. Collect RSVPs in a Google Sheet
 
-1. Create a Google Sheet named **Wedding RSVPs**. Add headers in row 1:
-   `submitted | name | email | attending | guests | arrival | events | hotel | dietary | note`
-2. **Extensions → Apps Script**, replace the code with:
+Sheet: **Wedding RSVPs — Mason & Skylar** (Google Drive).
 
-   ```js
-   function doPost(e) {
-     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-     const d = JSON.parse(e.postData.contents);
-     const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-     sheet.appendRow(headers.map(h => d[h] ?? ''));
-     return ContentService.createTextOutput('ok');
-   }
-   ```
-3. **Deploy → New deployment → Web app**. Execute as: *Me*. Who has access: *Anyone*.
-4. Copy the web app URL into `rsvpEndpoint` in `index.html`.
+1. Open the sheet → **Extensions → Apps Script**. Replace the code with the contents of `rsvp-apps-script.gs` and save.
+2. **Deploy → New deployment** → type **Web app**. Execute as: *Me*. Who has access: *Anyone*. Authorize when prompted.
+3. Copy the web app URL (ends in `/exec`) into `rsvpEndpoint` in `index.html`, commit, push.
 
-Every RSVP becomes a new row. Guests who resubmit create a new row, so the latest row per name is their current answer.
+Each RSVP becomes a row; if the same email submits again, their row is updated rather than duplicated.
+If you edit the script later, use **Deploy → Manage deployments → Edit → New version** so the URL stays the same.
 
 ## 3. Deploy to Vercel
 
