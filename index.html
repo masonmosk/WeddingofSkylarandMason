@@ -186,6 +186,21 @@
   .card li:first-child { border-top: 0; }
   .card li b { color: var(--ink); font-weight: 500; }
 
+  .stay {
+    display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center;
+    margin-bottom: clamp(44px, 7vw, 72px);
+  }
+  .stay-art { border-radius: 4px; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(47,58,53,.35); background: var(--sand); }
+  .stay-art img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .stay-text .eyebrow { color: var(--sage-deep); }
+  .stay-text h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 5vw, 46px); line-height: 1.05; margin: 8px 0 4px; }
+  .stay-text .when { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); }
+  .stay-text p { color: var(--ink-soft); margin-top: 16px; }
+  .stay-text .where { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 14px; color: var(--sage-deep); text-decoration: none; border-bottom: 1px solid transparent; }
+  .stay-text .where:hover { border-bottom-color: currentColor; }
+  .stay-text .where svg { width: 15px; height: 15px; }
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+
   /* Explore */
   .explore-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
   .spot { background: var(--sand); padding: 30px 26px; transition: background .2s; }
@@ -277,7 +292,7 @@
     nav a { white-space: nowrap; font-size: 11px; }
     .day { grid-template-columns: 1fr; }
     .day:nth-child(even) .day-art { order: 0; }
-    .cards, .explore-grid { grid-template-columns: 1fr; }
+    .cards, .cards-2, .explore-grid, .stay { grid-template-columns: 1fr; }
     .row, .choice { grid-template-columns: 1fr; }
   }
   @media (min-width: 821px) and (max-width: 1000px) {
@@ -428,7 +443,18 @@
       <h2>Travel &amp; Stay</h2>
       <div class="flourish"></div>
     </div>
-    <div class="cards reveal">
+    <div class="stay reveal">
+      <div class="stay-art"><img src="images/lepetit-entrance.jpg" alt="Watercolor of the Le Petit Pali entrance with its green 8th Avenue sign" loading="lazy"></div>
+      <div class="stay-text">
+        <div class="eyebrow">Where we’re staying</div>
+        <h3>Le Petit Pali</h3>
+        <div class="when">8th Avenue · Carmel-by-the-Sea</div>
+        <p>We’re all staying together at Le Petit Pali, a storybook inn of river-rock walls, brick courtyards and window boxes. It’s a short walk to the beach, Ocean Avenue and the restaurants in the village.</p>
+        <p>We’ll share booking details and any group rate here as soon as they’re confirmed.</p>
+        <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+8th+Avenue+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Open in Maps</a>
+      </div>
+    </div>
+    <div class="cards cards-2 reveal">
       <div class="card">
         <div class="card-icon"><i data-lucide="plane"></i></div>
         <h4>Flying in</h4>
@@ -438,12 +464,6 @@
           <li><b>San José (SJC)</b><span>~1.5 hrs</span></li>
           <li><b>San Francisco (SFO)</b><span>~2.5 hrs</span></li>
         </ul>
-      </div>
-      <div class="card">
-        <div class="card-icon"><i data-lucide="bed-double"></i></div>
-        <h4>Where we’re staying</h4>
-        <p>We’re all staying at <b>Le Petit Pali</b> in Carmel-by-the-Sea, a short walk from the beach, shops and restaurants.</p>
-        <p style="margin-top:10px">We’ll share booking details and any group rate as soon as they’re confirmed.</p>
       </div>
       <div class="card">
         <div class="card-icon"><i data-lucide="car"></i></div>
@@ -618,10 +638,8 @@ const CONFIG = {
   partner1: 'Mason',
   partner2: 'Skylar',
   ceremony: '2027-05-03T16:00:00-07:00',
-  // Where RSVPs go. Paste your Google Apps Script web-app URL here (see README.md).
-  // Leave blank to fall back to an email draft addressed to rsvpEmail.
+  // Google Apps Script web app that writes RSVPs to the sheet (see README.md).
   rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwD3LMBiLAUMhykqrXO28hpGzd6NKSMlwxR9-PAxKGT7N6uVLfFDmwxHoGQS4_gHbL4/exec',
-  rsvpEmail: '',                      // ← e.g. 'us@example.com'
 };
 /* ======================================================= */
 
@@ -722,14 +740,9 @@ form.addEventListener('submit', async e => {
   const btn = document.getElementById('submit-btn');
   btn.disabled = true; btn.textContent = 'Sending…';
   try {
-    if (CONFIG.rsvpEndpoint) {
-      // text/plain avoids a CORS preflight, which Google Apps Script can't answer
-      await fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
-    } else {
-      const body = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
-      location.href = `mailto:${CONFIG.rsvpEmail}?subject=${encodeURIComponent('RSVP — ' + data.name)}&body=${encodeURIComponent(body)}`;
-    }
+    // text/plain avoids a CORS preflight, which Google Apps Script can't answer
+    await fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
     try { localStorage.setItem('rsvp', JSON.stringify(data)); } catch (_) {}
     showThanks(data);
   } catch (err) {
