@@ -277,6 +277,89 @@
   footer .btn { border-color: rgba(255,255,255,.35); color: #fff; background: transparent; }
   footer .btn:hover { background: rgba(255,255,255,.1); }
 
+  footer .mgr-link {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 30px;
+    background: none; border: 0; cursor: pointer; font: 500 11px var(--sans);
+    letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4);
+  }
+  footer .mgr-link:hover { color: rgba(255,255,255,.8); }
+  footer .mgr-link svg { width: 13px; height: 13px; }
+
+  /* Manager */
+  .mgr {
+    position: fixed; inset: 0; z-index: 100; display: none;
+    background: rgba(30,40,38,.55); backdrop-filter: blur(4px);
+    padding: clamp(0px, 3vw, 32px);
+  }
+  .mgr.open { display: flex; align-items: center; justify-content: center; }
+  .mgr-panel {
+    background: var(--paper); color: var(--ink); border-radius: 8px; width: 100%;
+    max-width: 1100px; max-height: 100%; display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,.5);
+  }
+  .mgr-panel.locked { max-width: 400px; }
+  .mgr-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 18px 22px; border-bottom: 1px solid var(--line);
+  }
+  .mgr-top h3 { font-family: var(--serif); font-weight: 500; font-size: 26px; line-height: 1; }
+  .mgr-actions { display: flex; gap: 8px; align-items: center; }
+  .icon-btn {
+    display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--sand); color: var(--ink);
+    font: 500 12px var(--sans); cursor: pointer; white-space: nowrap;
+  }
+  .icon-btn:hover { background: var(--sand-deep); }
+  .icon-btn svg { width: 15px; height: 15px; }
+  .icon-btn.round { width: 36px; padding: 0; justify-content: center; }
+  .mgr-body { overflow: auto; padding: 22px; }
+  .pin-form { text-align: center; padding: 10px 6px 6px; }
+  .pin-form p { color: var(--ink-soft); font-size: 14px; margin-bottom: 18px; }
+  .pin-form input {
+    width: 100%; max-width: 240px; text-align: center; font: 500 26px var(--sans); letter-spacing: .5em;
+    padding: 12px 14px 12px calc(14px + .5em); border: 1px solid var(--line); border-radius: 6px; background: var(--sand);
+  }
+  .pin-form input:focus { outline: none; border-color: var(--sage-deep); background: #fff; }
+  .pin-form .btn { margin-top: 16px; width: 100%; max-width: 240px; justify-content: center; }
+  .pin-err { color: var(--clay); font-size: 13px; min-height: 20px; margin-top: 12px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }
+  .stat { background: var(--sand); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+  .stat b { display: block; font-family: var(--serif); font-size: 34px; font-weight: 500; line-height: 1.1; }
+  .stat span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+  .stat small { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  .mgr-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .mgr-tools input[type=search] {
+    flex: 1; min-width: 180px; padding: 10px 12px; font: 400 14px var(--sans);
+    border: 1px solid var(--line); border-radius: 6px; background: var(--sand);
+  }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .seg button { border: 0; background: var(--sand); padding: 8px 14px; font: 500 12px var(--sans); cursor: pointer; color: var(--ink-soft); }
+  .seg button.on { background: var(--sage-deep); color: #fff; }
+  .table-wrap { border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; }
+  table.rsvps { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 1040px; }
+  .rsvps td.muted { min-width: 110px; }
+  .rsvps th {
+    text-align: left; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft);
+    font-weight: 600; padding: 10px 12px; background: var(--sand); border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  .rsvps td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .rsvps tr:last-child td { border-bottom: 0; }
+  .rsvps .who b { font-weight: 600; display: block; }
+  .rsvps .who a { color: var(--ink-soft); font-size: 13px; text-decoration: none; }
+  .rsvps .muted { color: var(--ink-soft); font-size: 13px; }
+  .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .pill.yes { background: rgba(86,112,92,.14); color: var(--sage-deep); }
+  .pill.no { background: rgba(192,138,107,.16); color: #9a6245; }
+  .mgr-empty { text-align: center; color: var(--ink-soft); padding: 40px 10px; }
+  .mgr-meta { font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
+  @media (max-width: 640px) {
+    .mgr { padding: 0; }
+    .mgr-panel { border-radius: 0; height: 100%; max-height: none; }
+    .mgr-panel.locked { height: auto; border-radius: 8px; margin: 16px; }
+    .mgr-actions .label { display: none; }
+    .icon-btn { padding: 0 10px; }
+  }
+
   /* Reveal */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
   .reveal.in { opacity: 1; transform: none; }
@@ -630,7 +713,49 @@
   <div class="names" data-names-plain>Mason &amp; Skylar</div>
   <p>May 2 – 4, 2027 · Carmel-by-the-Sea</p>
   <div class="cal"><a class="btn" id="cal-btn" href="#"><i data-lucide="calendar-plus" style="width:16px;height:16px"></i>Add to calendar</a></div>
+  <button type="button" class="mgr-link" id="mgr-open"><i data-lucide="lock"></i>Manager</button>
 </footer>
+
+<!-- ============ MANAGER ============ -->
+<div class="mgr" id="mgr" role="dialog" aria-modal="true" aria-labelledby="mgr-title">
+  <div class="mgr-panel locked" id="mgr-panel">
+    <div class="mgr-top">
+      <h3 id="mgr-title">Manager</h3>
+      <div class="mgr-actions">
+        <button type="button" class="icon-btn" id="mgr-refresh" hidden><i data-lucide="refresh-cw"></i><span class="label">Refresh</span></button>
+        <button type="button" class="icon-btn" id="mgr-csv" hidden><i data-lucide="download"></i><span class="label">CSV</span></button>
+        <button type="button" class="icon-btn" id="mgr-lock" hidden><i data-lucide="lock"></i><span class="label">Lock</span></button>
+        <button type="button" class="icon-btn round" id="mgr-close" aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div class="mgr-body">
+      <form class="pin-form" id="pin-form" autocomplete="off">
+        <p>Enter the manager PIN to view RSVPs.</p>
+        <input type="password" id="pin" inputmode="numeric" maxlength="12" aria-label="Manager PIN" autocomplete="off">
+        <br><button type="submit" class="btn btn-dark" id="pin-btn">Unlock</button>
+        <div class="pin-err" id="pin-err" role="alert"></div>
+      </form>
+      <div id="mgr-dash" hidden>
+        <div class="stats" id="mgr-stats"></div>
+        <div class="mgr-tools">
+          <input type="search" id="mgr-search" placeholder="Search names, emails, notes…" aria-label="Search RSVPs">
+          <div class="seg" id="mgr-filter">
+            <button type="button" data-f="all" class="on">All</button>
+            <button type="button" data-f="Yes">Attending</button>
+            <button type="button" data-f="No">Declined</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="rsvps">
+            <thead><tr><th>Guest</th><th>RSVP</th><th>Guests</th><th>Arriving</th><th>Events</th><th>Le Petit Pali</th><th>Dietary</th><th>Note</th><th>Submitted</th></tr></thead>
+            <tbody id="mgr-rows"></tbody>
+          </table>
+        </div>
+        <div class="mgr-meta" id="mgr-meta"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ================= CONFIG — edit these ================= */
@@ -752,6 +877,124 @@ form.addEventListener('submit', async e => {
     btn.disabled = false; btn.textContent = 'Send RSVP';
   }
 });
+
+/* ---------- Manager: PIN is verified by the Apps Script, never in this page ---------- */
+(() => {
+  const $ = id => document.getElementById(id);
+  const modal = $('mgr'), panel = $('mgr-panel'), pinForm = $('pin-form'), dash = $('mgr-dash');
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  let pin = '', rows = [], filter = 'all', lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.classList.add('open'); document.body.style.overflow = 'hidden';
+    (pin ? $('mgr-search') : $('pin')).focus();
+  }
+  function close() {
+    modal.classList.remove('open'); document.body.style.overflow = '';
+    if (location.hash === '#manager') history.replaceState(null, '', location.pathname + location.search);
+    lastFocus && lastFocus.focus();
+  }
+  function lock() {
+    pin = ''; rows = [];
+    $('pin').value = ''; $('pin-err').textContent = '';
+    pinForm.hidden = false; dash.hidden = true; panel.classList.add('locked');
+    ['mgr-refresh', 'mgr-csv', 'mgr-lock'].forEach(id => $(id).hidden = true);
+    $('pin').focus();
+  }
+
+  async function load(p) {
+    const res = await fetch(CONFIG.rsvpEndpoint, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'list', pin: p }),
+    });
+    return res.json();
+  }
+
+  pinForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const p = $('pin').value.trim();
+    if (!p) return;
+    const btn = $('pin-btn'); btn.disabled = true; btn.textContent = 'Checking…'; $('pin-err').textContent = '';
+    try {
+      const data = await load(p);
+      if (data.error) { $('pin-err').textContent = data.error; $('pin').select(); return; }
+      pin = p; rows = data.rows || [];
+      pinForm.hidden = true; dash.hidden = false; panel.classList.remove('locked');
+      ['mgr-refresh', 'mgr-csv', 'mgr-lock'].forEach(id => $(id).hidden = false);
+      render();
+    } catch (err) {
+      $('pin-err').textContent = 'Couldn’t reach the RSVP sheet. Check your connection and try again.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Unlock';
+    }
+  });
+
+  function render() {
+    const yes = rows.filter(r => r.attending === 'Yes'), no = rows.filter(r => r.attending === 'No');
+    const n = r => parseInt(r.guests, 10) || 0;
+    const people = yes.reduce((t, r) => t + n(r), 0);
+    const at = key => yes.filter(r => (r.events || '').includes(key)).reduce((t, r) => t + n(r), 0);
+    const hotel = yes.filter(r => /^Yes/.test(r.hotel || '')).reduce((t, r) => t + n(r), 0);
+    const diet = yes.filter(r => (r.dietary || '').trim() && !/^(none|n\/?a|no)$/i.test(r.dietary.trim())).length;
+    $('mgr-stats').innerHTML = [
+      [people, 'Guests coming', `${yes.length} RSVP${yes.length === 1 ? '' : 's'} attending`],
+      [no.length, 'Declined', `${rows.length} total responses`],
+      [at('Ceremony'), 'Ceremony', 'Monday · 4:00 PM'],
+      [at('Rooftop'), 'Rooftop dinner', 'Grasing’s · Monday'],
+      [at('Welcome'), 'Welcome dinner', 'Sunday evening'],
+      [hotel, 'At Le Petit Pali', `${diet} with dietary notes`],
+    ].map(([v, l, s]) => `<div class="stat"><b>${v}</b><span>${l}</span><small>${s}</small></div>`).join('');
+
+    const q = $('mgr-search').value.trim().toLowerCase();
+    const list = rows
+      .filter(r => filter === 'all' || r.attending === filter)
+      .filter(r => !q || Object.values(r).join(' ').toLowerCase().includes(q))
+      .sort((a, b) => (b.submittedAt || '').localeCompare(a.submittedAt || ''));
+
+    $('mgr-rows').innerHTML = list.length ? list.map(r => `
+      <tr>
+        <td class="who"><b>${esc(r.name)}</b><a href="mailto:${esc(r.email)}">${esc(r.email)}</a></td>
+        <td><span class="pill ${r.attending === 'Yes' ? 'yes' : 'no'}">${r.attending === 'Yes' ? 'Attending' : 'Declined'}</span></td>
+        <td>${esc(r.attending === 'Yes' ? r.guests : '—')}</td>
+        <td class="muted">${esc(r.arrival)}</td>
+        <td class="muted">${esc(r.events).replace(/, /g, '<br>')}</td>
+        <td class="muted">${esc(r.hotel)}</td>
+        <td class="muted">${esc(r.dietary)}</td>
+        <td class="muted">${esc(r.note)}</td>
+        <td class="muted" style="white-space:nowrap">${esc(r.submitted)}</td>
+      </tr>`).join('')
+      : `<tr><td colspan="9" class="mgr-empty">${rows.length ? 'No RSVPs match.' : 'No RSVPs yet.'}</td></tr>`;
+    $('mgr-meta').textContent = `Showing ${list.length} of ${rows.length} · updated ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+
+  $('mgr-search').addEventListener('input', render);
+  $('mgr-filter').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    filter = b.dataset.f;
+    $('mgr-filter').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    render();
+  });
+  $('mgr-refresh').addEventListener('click', async () => {
+    const b = $('mgr-refresh'); b.disabled = true;
+    try { const data = await load(pin); if (data.error) return lock(); rows = data.rows || []; render(); }
+    finally { b.disabled = false; }
+  });
+  $('mgr-csv').addEventListener('click', () => {
+    const cols = ['name', 'email', 'attending', 'guests', 'arrival', 'events', 'hotel', 'dietary', 'note', 'submitted'];
+    const cell = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+    const csv = [cols.join(','), ...rows.map(r => cols.map(c => cell(r[c])).join(','))].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'wedding-rsvps.csv'; a.click();
+  });
+  $('mgr-lock').addEventListener('click', lock);
+  $('mgr-close').addEventListener('click', close);
+  $('mgr-open').addEventListener('click', open);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  if (location.hash === '#manager') open();
+})();
 
 // Restore a previous RSVP on this device
 try {
