@@ -16,13 +16,13 @@
     --sand: #f6f1e7;
     --sand-deep: #ece3d2;
     --paper: #fffdf8;
-    --ink: #2f3a35;
-    --ink-soft: #5d6a63;
-    --sage: #7d927f;
-    --sage-deep: #56705c;
+    --ink: #28332b;
+    --ink-soft: #57645a;
+    --sage: #6f8a72;
+    --sage-deep: #3d5945;
     --sea: #7e9cae;
-    --clay: #c08a6b;
-    --line: rgba(47, 58, 53, 0.14);
+    --clay: #a8643f;
+    --line: rgba(40, 51, 43, 0.14);
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Inter', system-ui, -apple-system, sans-serif;
   }
@@ -120,6 +120,7 @@
     font-family: var(--serif); font-size: clamp(22px, 3.4vw, 30px); line-height: 1.45;
     max-width: 760px; margin: 0 auto; font-style: italic; color: var(--ink);
   }
+  .welcome .sprig { width: min(300px, 62%); margin: 0 auto 26px; }
   .welcome .sign { margin-top: 26px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); }
 
   /* Itinerary */
@@ -153,7 +154,7 @@
   .timeline .what { font-family: var(--serif); font-size: 23px; font-weight: 500; line-height: 1.25; margin-top: 2px; }
   .timeline .detail { color: var(--ink-soft); font-size: 15px; margin-top: 4px; }
   .timeline .where { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; margin-top: 6px; color: var(--sage-deep); text-decoration: none; border-bottom: 1px solid transparent; }
-  .timeline .where:hover { border-bottom-color: currentColor; }
+  .timeline a.where:hover { border-bottom-color: currentColor; }
   .timeline .where svg { width: 14px; height: 14px; }
 
   /* Band */
@@ -349,8 +350,8 @@
   .rsvps .who a { color: var(--ink-soft); font-size: 13px; text-decoration: none; }
   .rsvps .muted { color: var(--ink-soft); font-size: 13px; }
   .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
-  .pill.yes { background: rgba(86,112,92,.14); color: var(--sage-deep); }
-  .pill.no { background: rgba(192,138,107,.16); color: #9a6245; }
+  .pill.yes { background: rgba(61,89,69,.14); color: var(--sage-deep); }
+  .pill.no { background: rgba(168,100,63,.16); color: #8a4f30; }
   .mgr-empty { text-align: center; color: var(--ink-soft); padding: 40px 10px; }
   .mgr-meta { font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
   @media (max-width: 640px) {
@@ -420,7 +421,8 @@
 <!-- ============ WELCOME ============ -->
 <section class="welcome" id="welcome">
   <div class="wrap reveal">
-    <p class="lead">We’re getting married by the sea, and we’d love for you to be there. Come for a long weekend of salt air, cypress trees, good food and the people we love most — all in one little town on the California coast.</p>
+    <img class="sprig" src="images/redwood-sprig.png" alt="" aria-hidden="true">
+    <p class="lead">We’re getting married among the redwoods of Big Sur, and we’d love for you to be there. Come for a long weekend of tall trees, salt air, good food and the people we love most, all based in one little town on the California coast.</p>
     <div class="flourish"></div>
     <div class="sign" data-names-plain>Mason &amp; Skylar</div>
   </div>
@@ -461,7 +463,7 @@
 
     <!-- Day 2 -->
     <article class="day reveal">
-      <div class="day-art"><img src="images/ceremony.jpg" alt="Watercolor of a beach ceremony setup with driftwood arch" loading="lazy"></div>
+      <div class="day-art"><img src="images/ceremony.jpg" alt="Watercolor of a ceremony arch and chairs in a Big Sur redwood grove" loading="lazy"></div>
       <div>
         <div class="day-num">Day two</div>
         <h3>The Wedding</h3>
@@ -470,18 +472,18 @@
           <li>
             <div class="t">Morning &amp; early afternoon</div>
             <div class="what">Free time to explore</div>
-            <div class="detail">Sleep in, walk Ocean Avenue, hike Point Lobos or grab a coffee on the beach. See our <a href="#explore">favorite spots</a> below.</div>
+            <div class="detail">Sleep in, walk Ocean Avenue, hike Point Lobos or grab a coffee on the beach. See our <a href="#explore">favorite spots</a> below. We’ll head down the coast mid-afternoon.</div>
           </li>
           <li class="key">
             <div class="t">4:00 PM</div>
-            <div class="what">Ceremony on the beach</div>
-            <div class="detail">An oceanfront ceremony at the state beach. Please arrive 15–20 minutes early. Details on parking and transport to come.</div>
-            <a class="where" href="https://maps.google.com/?q=Carmel+River+State+Beach" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Carmel River State Beach (planned)</a>
+            <div class="what">Ceremony among the redwoods</div>
+            <div class="detail">We’ll gather in a redwood grove in Big Sur, about 45 minutes down Highway 1 from Carmel. Plan to leave Carmel by 2:45 PM. The exact location, parking and transport details are to come.</div>
+            <span class="where"><i data-lucide="trees"></i>Big Sur, California · location to be announced</span>
           </li>
           <li class="key">
-            <div class="t">Following the ceremony</div>
+            <div class="t">Evening · back in Carmel</div>
             <div class="what">Celebration dinner on the rooftop</div>
-            <div class="detail">We’ve reserved the rooftop deck at Grasing’s for dinner, toasts and dancing into the evening.</div>
+            <div class="detail">After the drive back up the coast, we’ve reserved the rooftop deck at Grasing’s for dinner, toasts and dancing into the evening.</div>
             <a class="where" href="https://maps.google.com/?q=Grasing's+Coastal+Cuisine+Carmel" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Grasing’s Coastal Cuisine · 6th Ave &amp; Mission St</a>
           </li>
         </ul>
@@ -553,6 +555,7 @@
         <div class="card-icon"><i data-lucide="car"></i></div>
         <h4>Getting around</h4>
         <p>Carmel is very walkable, and the hotel, shops and Grasing’s are all close together. If you fly into SJC or SFO, rent a car. The drive down Highway 1 is beautiful.</p>
+        <p style="margin-top:10px">The ceremony is about 45 minutes down the coast in Big Sur, so you’ll want a car or a seat in someone else’s. We’ll help coordinate rides.</p>
         <p style="margin-top:10px">Heads up: Carmel homes famously have no street addresses, so use business names in your maps app.</p>
       </div>
     </div>
@@ -573,7 +576,7 @@
       <div class="spot"><div class="tag">Stroll</div><h5>Ocean Avenue &amp; the Village</h5><p>Storybook cottages, art galleries, tucked-away courtyards and plenty of coffee shops.</p></div>
       <div class="spot"><div class="tag">Beach</div><h5>Carmel Beach</h5><p>White sand at the foot of Ocean Ave. It’s dog-friendly and perfect for a morning walk.</p></div>
       <div class="spot"><div class="tag">Drive</div><h5>17-Mile Drive</h5><p>Pebble Beach, the Lone Cypress and ocean views that don’t quit. Enter through the Carmel Gate.</p></div>
-      <div class="spot"><div class="tag">History</div><h5>Carmel Mission</h5><p>A beautifully preserved 1771 mission with peaceful gardens, a few minutes from the ceremony beach.</p></div>
+      <div class="spot"><div class="tag">Redwoods</div><h5>Big Sur</h5><p>Want more time among the giants? Pfeiffer Big Sur State Park has easy trails through old-growth redwoods, and the Bixby Bridge is on the way.</p></div>
       <div class="spot"><div class="tag">Day Trip</div><h5>Monterey Bay Aquarium</h5><p>Twenty minutes up the road on Cannery Row. The kelp forest and sea otters are worth it.</p></div>
     </div>
   </div>
@@ -633,7 +636,7 @@
             <span class="lbl">Which events will you attend?</span>
             <div class="checks">
               <label><input type="checkbox" name="events" value="Welcome dinner (Sun)" checked><span>Welcome dinner<small>Sunday, May 2 · evening</small></span></label>
-              <label><input type="checkbox" name="events" value="Ceremony (Mon)" checked><span>Beach ceremony<small>Monday, May 3 · 4:00 PM</small></span></label>
+              <label><input type="checkbox" name="events" value="Ceremony (Mon)" checked><span>Redwood ceremony<small>Monday, May 3 · 4:00 PM</small></span></label>
               <label><input type="checkbox" name="events" value="Rooftop dinner (Mon)" checked><span>Celebration dinner at Grasing’s<small>Monday, May 3 · following the ceremony</small></span></label>
             </div>
           </div>
@@ -684,11 +687,11 @@
     <div class="faq reveal">
       <details>
         <summary>What should I wear?<i data-lucide="plus"></i></summary>
-        <p>Beach formal for the wedding: think linen, light suits, flowy dresses and colors of the coast. The ceremony is on sand, so skip stilettos and bring flats, wedges or dressy sandals. Sunday’s dinner is casual.</p>
+        <p>Garden formal with a woodland feel: think linen, light suits and flowy dresses in earthy and coastal tones. The ceremony is on a soft forest floor, so skip stilettos and bring block heels, wedges or flats. Sunday’s dinner is casual.</p>
       </details>
       <details>
         <summary>What’s the weather like in May?<i data-lucide="plus"></i></summary>
-        <p>Carmel in early May is usually sunny and mild, around the mid-60s during the day and low 50s at night. It can be breezy on the beach and cool on the rooftop after sunset, so bring a layer or wrap.</p>
+        <p>Carmel in early May is usually sunny and mild, around the mid-60s during the day and low 50s at night. It’s cooler in the shade of the redwoods and on the rooftop after sunset, so bring a layer or wrap.</p>
       </details>
       <details>
         <summary>Can I bring a plus-one or kids?<i data-lucide="plus"></i></summary>
@@ -699,8 +702,8 @@
         <p>Having you travel to celebrate with us is the greatest gift. If you’d like to give something anyway, we’ll post registry details here soon.</p>
       </details>
       <details>
-        <summary>How do we get from the beach to dinner?<i data-lucide="plus"></i></summary>
-        <p>Grasing’s is a quick drive from the beach, just a few minutes. We’ll share transportation and parking plans closer to the date.</p>
+        <summary>How do we get to the ceremony and back?<i data-lucide="plus"></i></summary>
+        <p>The grove is about 45 minutes south of Carmel on Highway 1, and dinner at Grasing’s is back in town. We’ll share shuttle, carpool and parking plans closer to the date. Cell service is spotty in Big Sur, so download directions before you leave.</p>
       </details>
       <details>
         <summary>Who do I contact with questions?<i data-lucide="plus"></i></summary>
@@ -813,7 +816,7 @@ document.getElementById('cal-btn').addEventListener('click', e => {
     'BEGIN:VEVENT','UID:wedding-ceremony-2027@carmel','DTSTAMP:20260101T000000Z',
     'DTSTART:20270503T230000Z','DTEND:20270504T050000Z',
     `SUMMARY:${CONFIG.partner1} & ${CONFIG.partner2} — Ceremony & Dinner`,
-    "LOCATION:Carmel River State Beach → Grasing's Coastal Cuisine",
+    "LOCATION:Big Sur redwoods → Grasing's Coastal Cuisine\\, Carmel",
     'END:VEVENT','END:VCALENDAR'
   ].join('\r\n');
   const a = document.createElement('a');

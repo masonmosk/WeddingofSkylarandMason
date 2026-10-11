@@ -11,7 +11,7 @@ rsvpEndpoint: '',      // Google Apps Script URL (step 2)
 rsvpEmail: '',         // fallback email if no endpoint is set
 ```
 
-Placeholders to confirm as plans firm up: welcome dinner venue/time, ceremony beach (currently Carmel River State Beach), hotel booking/group rate, RSVP deadline (March 1, 2027), registry.
+Placeholders to confirm as plans firm up: welcome dinner venue/time, ceremony grove in Big Sur (exact location to be announced), hotel booking/group rate, RSVP deadline (March 1, 2027), registry.
 
 ## 2. Collect RSVPs in a Google Sheet
 
