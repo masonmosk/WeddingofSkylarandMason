@@ -648,14 +648,6 @@
             </div>
           </div>
 
-          <div class="field">
-            <span class="lbl">Which events will you attend?</span>
-            <div class="checks">
-              <label><input type="checkbox" name="events" value="Welcome dinner (Sun)" checked><span>Welcome dinner<small>Sunday, May 2 · evening</small></span></label>
-              <label><input type="checkbox" name="events" value="Ceremony (Mon)" checked><span>Ceremony<small>Monday, May 3 · 3:30 PM (subject to change)</small></span></label>
-              <label><input type="checkbox" name="events" value="Rooftop dinner (Mon)" checked><span>Celebration dinner at Grasing’s<small>Monday, May 3 · 6:00 PM</small></span></label>
-            </div>
-          </div>
 
           <div class="field">
             <label class="lbl" for="hotel">Staying at Le Petit Pali?</label>
@@ -699,7 +691,7 @@
     <div class="faq reveal">
       <details>
         <summary>What should I wear?<i data-lucide="plus"></i></summary>
-        <p>Garden formal with a coastal feel: think linen, light suits and flowy dresses in earthy and coastal tones. The ceremony will be outdoors, possibly on sand or uneven ground, so skip stilettos and bring block heels, wedges or flats.</p>
+        <p>Coastal formal. We want you to be comfortable, so this isn’t a strict dress code: think linen, light suits and flowy dresses in earthy and coastal tones. The ceremony will be outdoors, possibly on sand or uneven ground, so skip stilettos and bring block heels, wedges or flats.</p>
       </details>
       <details>
         <summary>What’s the weather like in May?<i data-lucide="plus"></i></summary>
@@ -909,7 +901,7 @@ form.addEventListener('submit', async e => {
     guests: form.attending.value === 'Yes' ? form.guests.value : '0',
     arrival: form.attending.value === 'Yes' ? form.arrival.value : '',
     events: form.attending.value === 'Yes'
-      ? [...form.querySelectorAll('input[name=events]:checked')].map(c => c.value).join(', ') : '',
+      ? 'Welcome dinner (Sun), Ceremony (Mon), Rooftop dinner (Mon)' : '',
     hotel: form.attending.value === 'Yes' ? form.hotel.value : '',
     dietary: form.dietary.value.trim(),
     note: '',
