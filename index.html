@@ -202,6 +202,9 @@
   .stay-text .where { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: 14px; color: var(--sage-deep); text-decoration: none; border-bottom: 1px solid transparent; }
   .stay-text .where:hover { border-bottom-color: currentColor; }
   .stay-text .where svg { width: 15px; height: 15px; }
+  .rate-box { margin-top: 22px; }
+  .rate-btn.is-soon { opacity: .55; pointer-events: none; cursor: default; }
+  .rate-note { font-size: 13px; margin-top: 10px !important; }
   .cards-2 { grid-template-columns: repeat(2, 1fr); }
 
   /* Explore */
@@ -447,7 +450,11 @@
             <div class="t">Sunday · throughout the day</div>
             <div class="what">Fly in &amp; check in</div>
             <div class="detail">Monterey (MRY) and San José (SJC) are the closest airports. San Francisco (SFO) is the farthest but usually has the cheapest flights. Check in at Le Petit Pali (if you choose to stay with the group) or wherever you’re staying.</div>
-            <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Ocean+Ave+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Le Petit Pali · Ocean Avenue, Carmel-by-the-Sea</a>
+            <div class="rate-box">
+          <a class="btn btn-dark rate-btn is-soon" id="rate-btn" aria-disabled="true"><i data-lucide="calendar-check" style="width:16px;height:16px"></i><span id="rate-btn-text">Group rate link coming soon</span></a>
+          <p class="rate-note" id="rate-note">We’ll send the booking link by email or text once it’s ready, and post it here too.</p>
+        </div>
+        <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Ocean+Ave+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Le Petit Pali · Ocean Avenue, Carmel-by-the-Sea</a>
           </li>
           <li>
             <div class="t">Sunday · morning &amp; afternoon</div>
@@ -543,7 +550,7 @@
         <h3>Le Petit Pali</h3>
         <div class="when">Ocean Avenue · Carmel-by-the-Sea</div>
         <p>We’ve arranged a group rate at Le Petit Pali on Ocean Avenue for anyone who’d like to stay together. It’s right in the heart of the village and a short walk to the beach, shops and restaurants. Of course, you’re welcome to stay wherever suits you best.</p>
-        <p>The group rate currently covers Sunday, May 2 through Tuesday, May 4. If enough of you plan to arrive Saturday, we’ll try to extend it, so please tell us your arrival day when you RSVP. Booking details will be posted here once confirmed.</p>
+        <p>The group rate currently covers Sunday, May 2 through Tuesday, May 4. If enough of you plan to arrive Saturday, we’ll try to extend it, so please tell us your arrival day when you RSVP.</p>
         <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Ocean+Ave+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Open in Maps</a>
       </div>
     </div>
@@ -777,6 +784,8 @@ const CONFIG = {
   partner2: 'Mason',
   ceremony: '2027-05-03T15:30:00-07:00',
   // Google Apps Script web app that writes RSVPs to the sheet (see README.md).
+  // Paste the hotel's group-rate booking link here when it arrives; the button turns on automatically.
+  groupRateUrl: '',
   rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwD3LMBiLAUMhykqrXO28hpGzd6NKSMlwxR9-PAxKGT7N6uVLfFDmwxHoGQS4_gHbL4/exec',
 };
 /* ======================================================= */
@@ -815,6 +824,15 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if (heroVideo.paused) tryPlay();
     removeEventListener(ev, once);
   }, { passive: true }));
+}
+
+// Group-rate button: disabled until CONFIG.groupRateUrl is set
+if (CONFIG.groupRateUrl) {
+  const b = document.getElementById('rate-btn');
+  b.href = CONFIG.groupRateUrl; b.target = '_blank'; b.rel = 'noopener';
+  b.classList.remove('is-soon'); b.removeAttribute('aria-disabled');
+  document.getElementById('rate-btn-text').textContent = 'Book the group rate';
+  document.getElementById('rate-note').textContent = 'Use this link to book at the group rate. Rooms in the block are limited, so book early.';
 }
 
 // Nav background on scroll
