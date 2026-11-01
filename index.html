@@ -66,7 +66,9 @@
     position: absolute; inset: 0;
     background: var(--sea) url('images/hero-poster.jpg') center/cover no-repeat;
   }
-  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; transition: opacity .6s; }
+  .hero-video.blocked { opacity: 0; }
+  .hero-video::-webkit-media-controls, .hero-video::-webkit-media-controls-start-playback-button, .hero-video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(30,40,38,.35) 0%, rgba(30,40,38,.18) 45%, rgba(30,40,38,.55) 100%);
@@ -248,6 +250,7 @@
   .attending-only.hidden { display: none; }
   form .btn { width: 100%; justify-content: center; margin-top: 6px; padding: 18px; }
   form .btn[disabled] { opacity: .6; cursor: wait; }
+  .hint { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
   .form-note { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 14px; }
   .thanks { text-align: center; padding: 20px 0; }
   .thanks .card-icon { margin: 0 auto 18px; width: 60px; height: 60px; }
@@ -388,7 +391,6 @@
 <body>
 
 <nav id="nav">
-  <a href="#welcome">Welcome</a>
   <a href="#itinerary">Itinerary</a>
   <a href="#travel">Travel</a>
   <a href="#explore">Explore</a>
@@ -415,18 +417,8 @@
     </div>
     <a href="#rsvp" class="btn btn-light">RSVP <i data-lucide="arrow-right" style="width:16px;height:16px"></i></a>
   </div>
-  <a href="#welcome" class="scroll-cue" aria-label="Scroll down"><i data-lucide="chevron-down"></i></a>
+  <a href="#itinerary" class="scroll-cue" aria-label="Scroll down"><i data-lucide="chevron-down"></i></a>
 </header>
-
-<!-- ============ WELCOME ============ -->
-<section class="welcome" id="welcome">
-  <div class="wrap reveal">
-    <img class="sprig" src="images/redwood-sprig.png" alt="" aria-hidden="true">
-    <p class="lead">We’re getting married among the redwoods of Big Sur, and we’d love for you to be there. Come for a long weekend of tall trees, salt air, good food and the people we love most, all based in one little town on the California coast.</p>
-    <div class="flourish"></div>
-    <div class="sign" data-names-plain>Skylar &amp; Mason</div>
-  </div>
-</section>
 
 <!-- ============ ITINERARY ============ -->
 <section id="itinerary">
@@ -435,27 +427,37 @@
       <div class="eyebrow">The Weekend</div>
       <h2>Itinerary</h2>
       <div class="flourish"></div>
-      <p>Three days on the coast. Times are approximate and we’ll share any updates here, so check back as the date gets closer.</p>
+      <p>Arrive Saturday or Sunday, celebrate on Monday, and head home Tuesday (or stay longer). Times may change, so check back as the date gets closer.</p>
     </div>
 
-    <!-- Day 1 -->
+    <!-- Arrival -->
     <article class="day reveal">
-      <div class="day-art"><img src="images/arrival.jpg" alt="Watercolor of the Le Petit Pali courtyard in Carmel" loading="lazy"></div>
+      <div class="day-art"><img src="images/arrival.jpg?v=ocean" alt="Watercolor of Le Petit Pali on Ocean Avenue in Carmel" loading="lazy"></div>
       <div>
-        <div class="day-num">Day one</div>
+        <div class="day-num">Arrival days</div>
         <h3>Arrival &amp; Welcome</h3>
-        <div class="when">Sunday · May 2, 2027</div>
+        <div class="when">Saturday, May 1 &amp; Sunday, May 2, 2027</div>
         <ul class="timeline">
           <li>
-            <div class="t">Throughout the day</div>
+            <div class="t">Saturday · optional early arrival</div>
+            <div class="what">A free day in Carmel</div>
+            <div class="detail">Coming in a day early? Saturday has no set plans, so it’s yours to settle in, wander the village, catch the sunset on Carmel Beach or head down the coast on your own. We may be able to extend the group rate to Saturday depending on how many of you come early, so let us know your arrival day when you RSVP.</div>
+          </li>
+          <li>
+            <div class="t">Sunday · throughout the day</div>
             <div class="what">Fly in &amp; check in</div>
-            <div class="detail">Land in Monterey (or drive down from SFO / SJC) and settle into Le Petit Pali, where we’ll all be staying together.</div>
-            <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Le Petit Pali, Carmel-by-the-Sea</a>
+            <div class="detail">Monterey (MRY) and San José (SJC) are the closest airports. San Francisco (SFO) is the farthest but usually has the cheapest flights. Check in at Le Petit Pali, where we’ll all be staying together.</div>
+            <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Ocean+Ave+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Le Petit Pali · Ocean Avenue, Carmel-by-the-Sea</a>
+          </li>
+          <li>
+            <div class="t">Sunday · morning &amp; afternoon</div>
+            <div class="what">Breakfast &amp; hanging out</div>
+            <div class="detail">If you’re in early, join us for breakfast and an easy day hanging out at the hotel before everyone else arrives.</div>
           </li>
           <li class="key">
-            <div class="t">Evening · Time TBA</div>
+            <div class="t">Sunday · evening · details to come</div>
             <div class="what">Welcome dinner</div>
-            <div class="detail">A relaxed, casual dinner to kick off the weekend. No dress code — come as you are after the travel day.</div>
+            <div class="detail">A relaxed, casual dinner to kick things off. Come as you are after the travel day.</div>
           </li>
         </ul>
       </div>
@@ -465,26 +467,31 @@
     <article class="day reveal">
       <div class="day-art"><img src="images/ceremony.jpg" alt="Watercolor of a ceremony arch and chairs in a Big Sur redwood grove" loading="lazy"></div>
       <div>
-        <div class="day-num">Day two</div>
+        <div class="day-num">The big day</div>
         <h3>The Wedding</h3>
         <div class="when">Monday · May 3, 2027</div>
         <ul class="timeline">
           <li>
             <div class="t">Morning &amp; early afternoon</div>
             <div class="what">Free time to explore</div>
-            <div class="detail">Sleep in, walk Ocean Avenue, hike Point Lobos or grab a coffee on the beach. See our <a href="#explore">favorite spots</a> below. We’ll head down the coast mid-afternoon.</div>
+            <div class="detail">Sleep in, walk Ocean Avenue, hike Point Lobos or grab a coffee on the beach. See some <a href="#explore">popular spots</a> below.</div>
           </li>
           <li class="key">
-            <div class="t">4:00 PM</div>
+            <div class="t">3:30 PM · time subject to change</div>
             <div class="what">Ceremony among the redwoods</div>
-            <div class="detail">We’ll gather in a redwood grove in Big Sur, about 45 minutes down Highway 1 from Carmel. Plan to leave Carmel by 2:45 PM. The exact location, parking and transport details are to come.</div>
-            <span class="where"><i data-lucide="trees"></i>Big Sur, California · location to be announced</span>
+            <div class="detail">An intimate ceremony in a redwood grove in Big Sur. We’re arranging transportation from Le Petit Pali to the ceremony and back, so you won’t need to drive or worry about parking. Pickup times will be shared closer to the date.</div>
+            <span class="where"><i data-lucide="trees"></i>Big Sur, California</span>
           </li>
           <li class="key">
-            <div class="t">Evening · back in Carmel</div>
-            <div class="what">Celebration dinner on the rooftop</div>
-            <div class="detail">After the drive back up the coast, we’ve reserved the rooftop deck at Grasing’s for dinner, toasts and dancing into the evening.</div>
+            <div class="t">6:00 PM</div>
+            <div class="what">Cocktail hour on the rooftop</div>
+            <div class="detail">Drinks on the rooftop deck at Grasing’s for the first half hour as everyone filters in.</div>
             <a class="where" href="https://maps.google.com/?q=Grasing's+Coastal+Cuisine+Carmel" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Grasing’s Coastal Cuisine · 6th Ave &amp; Mission St</a>
+          </li>
+          <li class="key">
+            <div class="t">6:30 – 10:00 PM</div>
+            <div class="what">Dinner &amp; celebration</div>
+            <div class="detail">Dinner, toasts, cake and celebrating into the evening under the string lights.</div>
           </li>
         </ul>
       </div>
@@ -494,19 +501,19 @@
     <article class="day reveal">
       <div class="day-art"><img src="images/farewell.jpg" alt="Watercolor of the Big Sur coast road in morning fog" loading="lazy"></div>
       <div>
-        <div class="day-num">Day three</div>
+        <div class="day-num">Farewell</div>
         <h3>Farewell &amp; Onward</h3>
         <div class="when">Tuesday · May 4, 2027</div>
         <ul class="timeline">
           <li>
             <div class="t">Morning</div>
             <div class="what">Check out &amp; head home</div>
-            <div class="detail">Safe travels! Thank you for making the trip to celebrate with us.</div>
+            <div class="detail">Check out whenever suits you. Thank you for making the trip to celebrate with us. Safe travels!</div>
           </li>
           <li>
             <div class="t">Or stay awhile</div>
             <div class="what">Keep exploring</div>
-            <div class="detail">If you can extend your trip, Big Sur, Monterey and the wine country of Carmel Valley are all close by.</div>
+            <div class="detail">No rush to leave. Explore a little longer, head out later in the day, or extend your trip. Big Sur, Monterey and Carmel Valley wine country are all close by.</div>
           </li>
         </ul>
       </div>
@@ -517,7 +524,7 @@
 <div class="band">
   <div class="band-inner reveal">
     <div class="eyebrow">Monday evening</div>
-    <p>Dinner and dancing under the string lights on the rooftop at Grasing’s</p>
+    <p>Dinner, toasts and cake under the string lights on the rooftop at Grasing’s</p>
   </div>
 </div>
 
@@ -530,21 +537,21 @@
       <div class="flourish"></div>
     </div>
     <div class="stay reveal">
-      <div class="stay-art"><img src="images/lepetit-entrance.jpg" alt="Watercolor of the Le Petit Pali entrance with its green 8th Avenue sign" loading="lazy"></div>
+      <div class="stay-art"><img src="images/lepetit-entrance.jpg?v=ocean" alt="Watercolor of Le Petit Pali on Ocean Avenue" loading="lazy"></div>
       <div class="stay-text">
         <div class="eyebrow">Where we’re staying</div>
         <h3>Le Petit Pali</h3>
-        <div class="when">8th Avenue · Carmel-by-the-Sea</div>
-        <p>We’re all staying together at Le Petit Pali, a storybook inn of river-rock walls, brick courtyards and window boxes. It’s a short walk to the beach, Ocean Avenue and the restaurants in the village.</p>
-        <p>We’ll share booking details and any group rate here as soon as they’re confirmed.</p>
-        <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+8th+Avenue+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Open in Maps</a>
+        <div class="when">Ocean Avenue · Carmel-by-the-Sea</div>
+        <p>We’re all staying together at Le Petit Pali on Ocean Avenue, right in the heart of the village and a short walk to the beach, shops and restaurants.</p>
+        <p>We’re arranging a group rate for Sunday, May 2 through Tuesday, May 4. If enough of you plan to arrive Saturday, we’ll try to extend it, so please tell us your arrival day when you RSVP. Booking details will be posted here once confirmed.</p>
+        <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+Ocean+Ave+Carmel-by-the-Sea" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Open in Maps</a>
       </div>
     </div>
     <div class="cards cards-2 reveal">
       <div class="card">
         <div class="card-icon"><i data-lucide="plane"></i></div>
         <h4>Flying in</h4>
-        <p>Monterey is the easiest option. The larger Bay Area airports usually have more flights and cheaper fares.</p>
+        <p>Monterey and San José are the closest. San Francisco is the farthest but usually has the cheapest flights.</p>
         <ul>
           <li><b>Monterey (MRY)</b><span>~15 min</span></li>
           <li><b>San José (SJC)</b><span>~1.5 hrs</span></li>
@@ -554,8 +561,8 @@
       <div class="card">
         <div class="card-icon"><i data-lucide="car"></i></div>
         <h4>Getting around</h4>
-        <p>Carmel is very walkable, and the hotel, shops and Grasing’s are all close together. If you fly into SJC or SFO, rent a car. The drive down Highway 1 is beautiful.</p>
-        <p style="margin-top:10px">The ceremony is about 45 minutes down the coast in Big Sur, so you’ll want a car or a seat in someone else’s. We’ll help coordinate rides.</p>
+        <p>We’re providing transportation from Le Petit Pali to the ceremony in Big Sur and back to Carmel for dinner, so there’s no need to drive yourself on the big day.</p>
+        <p style="margin-top:10px">Carmel is very walkable, and the hotel, shops and Grasing’s are all close together. If you fly into San José or San Francisco, you’ll want a rental car to get to Carmel. The drive down Highway 1 is beautiful.</p>
         <p style="margin-top:10px">Heads up: Carmel homes famously have no street addresses, so use business names in your maps app.</p>
       </div>
     </div>
@@ -569,7 +576,7 @@
       <div class="eyebrow">Free Time</div>
       <h2>Explore Carmel</h2>
       <div class="flourish"></div>
-      <p>A few of our favorite ways to spend Monday morning, or an extra day if you can stay.</p>
+      <p>A few popular ways to spend Monday morning, or Saturday if you come in early.</p>
     </div>
     <div class="explore-grid reveal">
       <div class="spot"><div class="tag">Hike</div><h5>Point Lobos State Reserve</h5><p>Some of the most beautiful coastline anywhere. Easy trails, sea lions and hidden coves. Go early, because parking fills up fast.</p></div>
@@ -622,13 +629,15 @@
               </select>
             </div>
             <div class="field">
-              <label class="lbl" for="arrival">Arriving</label>
+              <label class="lbl" for="arrival">Which day will you arrive?</label>
               <select id="arrival" name="arrival">
+                <option value="" selected disabled>Choose a day</option>
+                <option>Saturday, May 1</option>
                 <option>Sunday, May 2</option>
-                <option>Saturday, May 1 or earlier</option>
                 <option>Monday, May 3</option>
                 <option>Not sure yet</option>
               </select>
+              <small class="hint">Helps us plan the hotel group rate.</small>
             </div>
           </div>
 
@@ -636,8 +645,8 @@
             <span class="lbl">Which events will you attend?</span>
             <div class="checks">
               <label><input type="checkbox" name="events" value="Welcome dinner (Sun)" checked><span>Welcome dinner<small>Sunday, May 2 · evening</small></span></label>
-              <label><input type="checkbox" name="events" value="Ceremony (Mon)" checked><span>Redwood ceremony<small>Monday, May 3 · 4:00 PM</small></span></label>
-              <label><input type="checkbox" name="events" value="Rooftop dinner (Mon)" checked><span>Celebration dinner at Grasing’s<small>Monday, May 3 · following the ceremony</small></span></label>
+              <label><input type="checkbox" name="events" value="Ceremony (Mon)" checked><span>Redwood ceremony<small>Monday, May 3 · 3:30 PM (subject to change)</small></span></label>
+              <label><input type="checkbox" name="events" value="Rooftop dinner (Mon)" checked><span>Celebration dinner at Grasing’s<small>Monday, May 3 · 6:00 PM</small></span></label>
             </div>
           </div>
 
@@ -699,11 +708,15 @@
       </details>
       <details>
         <summary>Is there a registry?<i data-lucide="plus"></i></summary>
-        <p>Having you travel to celebrate with us is the greatest gift. If you’d like to give something anyway, we’ll post registry details here soon.</p>
+        <p>There’s no registry, and please don’t bring gifts. Your presence is more than enough.</p>
       </details>
       <details>
         <summary>How do we get to the ceremony and back?<i data-lucide="plus"></i></summary>
-        <p>The grove is about 45 minutes south of Carmel on Highway 1, and dinner at Grasing’s is back in town. We’ll share shuttle, carpool and parking plans closer to the date. Cell service is spotty in Big Sur, so download directions before you leave.</p>
+        <p>We’re arranging transportation from Le Petit Pali to the ceremony in Big Sur and back to Carmel for dinner at Grasing’s, so you won’t need to drive. Pickup times will be shared closer to the date. Cell service is spotty in Big Sur, so it’s a good idea to have our contact info saved before you leave.</p>
+      </details>
+      <details>
+        <summary>Can we arrive a day early?<i data-lucide="plus"></i></summary>
+        <p>Absolutely. Saturday, May 1 is a free day with no set plans. Our group rate currently runs Sunday through Tuesday, and we may be able to add Saturday if enough guests come early, so please choose your arrival day on the RSVP form.</p>
       </details>
       <details>
         <summary>Who do I contact with questions?<i data-lucide="plus"></i></summary>
@@ -766,7 +779,7 @@
 const CONFIG = {
   partner1: 'Skylar',
   partner2: 'Mason',
-  ceremony: '2027-05-03T16:00:00-07:00',
+  ceremony: '2027-05-03T15:30:00-07:00',
   // Google Apps Script web app that writes RSVPs to the sheet (see README.md).
   rsvpEndpoint: 'https://script.google.com/macros/s/AKfycbwD3LMBiLAUMhykqrXO28hpGzd6NKSMlwxR9-PAxKGT7N6uVLfFDmwxHoGQS4_gHbL4/exec',
 };
@@ -792,6 +805,21 @@ tick(); setInterval(tick, 30000);
 const heroVideo = document.querySelector('.hero-video');
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) heroVideo.removeAttribute('autoplay'), heroVideo.pause();
 heroVideo.addEventListener('error', () => heroVideo.remove(), true);
+heroVideo.disablePictureInPicture = true;
+heroVideo.muted = true;
+// iOS (e.g. Low Power Mode) can block autoplay and shows a play button over the video.
+// If that happens, show the still painting instead and start the video on the first tap or scroll.
+function tryPlay() {
+  const p = heroVideo.play();
+  if (p && p.then) p.then(() => heroVideo.classList.remove('blocked')).catch(() => heroVideo.classList.add('blocked'));
+}
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  tryPlay();
+  ['touchstart', 'click', 'scroll'].forEach(ev => addEventListener(ev, function once() {
+    if (heroVideo.paused) tryPlay();
+    removeEventListener(ev, once);
+  }, { passive: true }));
+}
 
 // Nav background on scroll
 const nav = document.getElementById('nav');
@@ -814,7 +842,7 @@ document.getElementById('cal-btn').addEventListener('click', e => {
     'LOCATION:Carmel-by-the-Sea\\, CA','DESCRIPTION:Ceremony Monday May 3 at 4pm. Details: ' + location.href.split('#')[0],
     'END:VEVENT',
     'BEGIN:VEVENT','UID:wedding-ceremony-2027@carmel','DTSTAMP:20260101T000000Z',
-    'DTSTART:20270503T230000Z','DTEND:20270504T050000Z',
+    'DTSTART:20270503T223000Z','DTEND:20270504T050000Z',
     `SUMMARY:${CONFIG.partner1} & ${CONFIG.partner2} — Ceremony & Dinner`,
     "LOCATION:Big Sur redwoods → Grasing's Coastal Cuisine\\, Carmel",
     'END:VEVENT','END:VCALENDAR'
@@ -851,6 +879,12 @@ form.addEventListener('submit', async e => {
   if (!form.name.value.trim() || !form.email.value.trim() || !form.attending.value) {
     note.textContent = 'Please add your name, email, and whether you’re attending.';
     note.style.color = 'var(--clay)';
+    return;
+  }
+  if (form.attending.value === 'Yes' && !form.arrival.value) {
+    note.textContent = 'Please let us know which day you plan to arrive.';
+    note.style.color = 'var(--clay)';
+    form.arrival.focus();
     return;
   }
   const data = {
@@ -944,7 +978,7 @@ form.addEventListener('submit', async e => {
     $('mgr-stats').innerHTML = [
       [people, 'Guests coming', `${yes.length} RSVP${yes.length === 1 ? '' : 's'} attending`],
       [no.length, 'Declined', `${rows.length} total responses`],
-      [at('Ceremony'), 'Ceremony', 'Monday · 4:00 PM'],
+      [at('Ceremony'), 'Ceremony', 'Monday · 3:30 PM'],
       [at('Rooftop'), 'Rooftop dinner', 'Grasing’s · Monday'],
       [at('Welcome'), 'Welcome dinner', 'Sunday evening'],
       [hotel, 'At Le Petit Pali', `${diet} with dietary notes`],
