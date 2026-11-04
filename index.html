@@ -281,6 +281,10 @@
   footer .names { font-family: var(--serif); font-style: italic; font-size: 38px; color: #fff; }
   footer p { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; margin-top: 8px; }
   footer .cal { margin-top: 26px; }
+  footer .cal-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  footer .cal-label svg { width: 15px; height: 15px; }
+  footer .cal-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 14px; }
+  footer .cal-links .btn { padding: 12px 22px; }
   footer .btn { border-color: rgba(255,255,255,.35); color: #fff; background: transparent; }
   footer .btn:hover { background: rgba(255,255,255,.1); }
 
@@ -720,7 +724,14 @@
 <footer>
   <div class="names" data-names-plain>Skylar &amp; Mason</div>
   <p>May 2 – 4, 2027 · Carmel-by-the-Sea</p>
-  <div class="cal"><a class="btn" id="cal-btn" href="#"><i data-lucide="calendar-plus" style="width:16px;height:16px"></i>Add to calendar</a></div>
+  <div class="cal">
+    <div class="cal-label"><i data-lucide="calendar-plus"></i>Add to calendar</div>
+    <div class="cal-links">
+      <a class="btn" href="wedding.ics">Apple / iPhone</a>
+      <a class="btn" id="cal-google" href="#" target="_blank" rel="noopener">Google</a>
+      <a class="btn" id="cal-outlook" href="#" target="_blank" rel="noopener">Outlook</a>
+    </div>
+  </div>
   <button type="button" class="mgr-link" id="mgr-open"><i data-lucide="lock"></i>Manager</button>
 </footer>
 
@@ -833,27 +844,18 @@ const io = new IntersectionObserver(entries => entries.forEach(e => {
 }), { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Calendar (.ics)
-document.getElementById('cal-btn').addEventListener('click', e => {
-  e.preventDefault();
-  const ics = [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Wedding//EN',
-    'BEGIN:VEVENT','UID:wedding-weekend-2027@carmel','DTSTAMP:20260101T000000Z',
-    'DTSTART;VALUE=DATE:20270502','DTEND;VALUE=DATE:20270505',
-    `SUMMARY:${CONFIG.partner1} & ${CONFIG.partner2} — Wedding Weekend`,
-    'LOCATION:Carmel-by-the-Sea\\, CA','DESCRIPTION:Ceremony Monday May 3 at 4pm. Details: ' + location.href.split('#')[0],
-    'END:VEVENT',
-    'BEGIN:VEVENT','UID:wedding-ceremony-2027@carmel','DTSTAMP:20260101T000000Z',
-    'DTSTART:20270503T223000Z','DTEND:20270504T050000Z',
-    `SUMMARY:${CONFIG.partner1} & ${CONFIG.partner2} — Ceremony & Dinner`,
-    "LOCATION:Big Sur → Grasing's Coastal Cuisine\\, Carmel",
-    'END:VEVENT','END:VCALENDAR'
-  ].join('\r\n');
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
-  a.download = 'wedding-weekend.ics';
-  a.click();
-});
+// Add to calendar: Apple uses the hosted wedding.ics; Google and Outlook open prefilled
+(() => {
+  const title = "Skylar & Mason's Wedding";
+  const where = 'Big Sur, CA (ceremony) · Grasing’s, Carmel-by-the-Sea (dinner)';
+  const site = location.origin + '/';
+  const details = "Ceremony at 3:30 PM (time subject to change) amid the scenery of Big Sur, with transportation from Le Petit Pali. Cocktails on the rooftop at 6:00 PM and dinner 6:30–10:00 PM at Grasing's, Carmel-by-the-Sea. Details & RSVP: " + site;
+  const q = o => Object.entries(o).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
+  document.getElementById('cal-google').href = 'https://calendar.google.com/calendar/render?' +
+    q({ action: 'TEMPLATE', text: title, dates: '20270503T223000Z/20270504T050000Z', details, location: where });
+  document.getElementById('cal-outlook').href = 'https://outlook.live.com/calendar/0/deeplink/compose?' +
+    q({ path: '/calendar/action/compose', rru: 'addevent', subject: title, startdt: '2027-05-03T22:30:00Z', enddt: '2027-05-04T05:00:00Z', body: details, location: where });
+})();
 
 // RSVP form
 const form = document.getElementById('rsvp-form');

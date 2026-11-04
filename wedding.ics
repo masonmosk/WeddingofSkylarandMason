@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Skylar and Mason//Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:skylar-mason-wedding-2027@weddingof-skylarand-mason.vercel.app
+DTSTAMP:20261104T000000Z
+DTSTART:20270503T223000Z
+DTEND:20270504T050000Z
+SUMMARY:Skylar & Mason's Wedding
+LOCATION:Big Sur\, CA (ceremony) · Grasing’s\, Carmel-by-the-Sea (dinne
+ r)
+DESCRIPTION:Ceremony at 3:30 PM (time subject to change) amid the scenery 
+ of Big Sur\, with transportation from Le Petit Pali. Cocktails on the roof
+ top at 6:00 PM and dinner 6:30-10:00 PM at Grasing's\, Carmel-by-the-Sea. 
+ Details & RSVP: https://weddingof-skylarand-mason.vercel.app
+URL:https://weddingof-skylarand-mason.vercel.app
+END:VEVENT
+END:VCALENDAR
