@@ -434,35 +434,30 @@
       <div class="eyebrow">The Weekend</div>
       <h2>Itinerary</h2>
       <div class="flourish"></div>
-      <p>Arrive Saturday or Sunday, celebrate on Monday, and head home Tuesday (or stay longer). Times may change, so check back as the date gets closer.</p>
+      <p>Arrive Sunday, celebrate on Monday, and head home Tuesday (or stay longer). Times may change, so check back as the date gets closer.</p>
     </div>
 
     <!-- Arrival -->
     <article class="day reveal">
       <div class="day-art"><img src="images/arrival.jpg?v=entrance" alt="Watercolor of the Le Petit Pali entrance on Ocean Avenue" loading="lazy"></div>
       <div>
-        <div class="day-num">Arrival days</div>
+        <div class="day-num">Arrival</div>
         <h3>Arrival &amp; Welcome</h3>
-        <div class="when">Saturday, May 1 &amp; Sunday, May 2, 2027</div>
+        <div class="when">Sunday · May 2, 2027</div>
         <ul class="timeline">
           <li>
-            <div class="t">Saturday · optional early arrival</div>
-            <div class="what">A free day in Carmel</div>
-            <div class="detail">Coming in a day early? Saturday has no set plans, so it’s yours to settle in, wander the village, catch the sunset on Carmel Beach or head down the coast on your own. We may be able to extend the group rate to Saturday depending on how many of you come early, so let us know your arrival day when you RSVP.</div>
-          </li>
-          <li>
-            <div class="t">Sunday · throughout the day</div>
+            <div class="t">Throughout the day</div>
             <div class="what">Fly in &amp; check in</div>
             <div class="detail">Monterey (MRY) and San José (SJC) are the closest airports. San Francisco (SFO) is the farthest but usually has the cheapest flights. Check in at Le Petit Pali (if you choose to stay with the group) or wherever you’re staying.</div>
             <a class="where" href="https://maps.google.com/?q=Le+Petit+Pali+at+Ocean+Ave,+Junipero+St+%26+Ocean+Ave,+Carmel-by-the-Sea,+CA" target="_blank" rel="noopener"><i data-lucide="map-pin"></i>Le Petit Pali · Junipero St &amp; Ocean Ave, Carmel-by-the-Sea</a>
           </li>
           <li>
-            <div class="t">Sunday · morning &amp; afternoon</div>
+            <div class="t">Morning &amp; afternoon</div>
             <div class="what">Breakfast &amp; hanging out</div>
             <div class="detail">If you’re in early, join us for breakfast and an easy day hanging out at the hotel before everyone else arrives.</div>
           </li>
           <li class="key">
-            <div class="t">Sunday · evening · details to come</div>
+            <div class="t">Evening · details to come</div>
             <div class="what">Welcome dinner</div>
             <div class="detail">A relaxed dinner to kick things off together.</div>
           </li>
@@ -550,7 +545,7 @@
         <h3>Le Petit Pali</h3>
         <div class="when">Junipero Street &amp; Ocean Avenue · Carmel-by-the-Sea</div>
         <p>We’ve arranged a group rate at Le Petit Pali on Ocean Avenue for anyone who’d like to stay together. It’s right in the heart of the village and a short walk to the beach, shops and restaurants. Of course, you’re welcome to stay wherever suits you best.</p>
-        <p>The group rate currently covers Sunday, May 2 through Tuesday, May 4. If enough of you plan to arrive Saturday, we’ll try to extend it, so please tell us your arrival day when you RSVP.</p>
+        <p>The group rate covers Sunday and Monday nights (May 2 and 3) and will be approximately $350–400 a night, subject to slight shifts. When you RSVP, please confirm whether you plan to stay here.</p>
         <div class="rate-box">
           <a class="btn btn-dark rate-btn is-soon" id="rate-btn" aria-disabled="true"><i data-lucide="calendar-check" style="width:16px;height:16px"></i><span id="rate-btn-text">Group rate link coming soon</span></a>
           <p class="rate-note" id="rate-note">We’ll send the booking link by email or text once it’s ready, and post it here too.</p>
@@ -632,29 +627,16 @@
         </div>
 
         <div class="attending-only hidden" id="attending-fields">
-          <div class="row">
-            <div class="field">
-              <label class="lbl" for="guests">Number of guests</label>
-              <select id="guests" name="guests">
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-              </select>
-            </div>
-            <div class="field">
-              <label class="lbl" for="arrival">Which day will you arrive?</label>
-              <select id="arrival" name="arrival">
-                <option value="" selected disabled>Choose a day</option>
-                <option>Saturday, May 1</option>
-                <option>Sunday, May 2</option>
-                <option>Monday, May 3</option>
-                <option>Not sure yet</option>
-              </select>
-              <small class="hint">Helps us plan the hotel group rate.</small>
-            </div>
+          <div class="field">
+            <label class="lbl" for="guests">Number of guests</label>
+            <select id="guests" name="guests">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+            </select>
           </div>
 
 
           <div class="field">
-            <label class="lbl" for="hotel">Staying at Le Petit Pali?</label>
+            <label class="lbl" for="hotel">Staying at Le Petit Pali (Sunday &amp; Monday nights)?</label>
             <select id="hotel" name="hotel">
               <option>Yes, please count us in</option>
               <option>No, we’ll stay elsewhere</option>
@@ -712,10 +694,6 @@
       <details>
         <summary>Should I rent a car?<i data-lucide="plus"></i></summary>
         <p>No, you don’t need one unless you’d like to go off and explore on your own. Our hotel is in the middle of Carmel-by-the-Sea, an easy walk to the beach, shops and restaurants, and we’ll be providing transportation to the ceremony and back.</p>
-      </details>
-      <details>
-        <summary>Can we arrive a day early?<i data-lucide="plus"></i></summary>
-        <p>Absolutely. Saturday, May 1 is a free day with no set plans. Our group rate currently runs Sunday through Tuesday, and we may be able to add Saturday if enough guests come early, so please choose your arrival day on the RSVP form.</p>
       </details>
     </div>
   </div>
@@ -885,19 +863,13 @@ form.addEventListener('submit', async e => {
     note.style.color = 'var(--clay)';
     return;
   }
-  if (form.attending.value === 'Yes' && !form.arrival.value) {
-    note.textContent = 'Please let us know which day you plan to arrive.';
-    note.style.color = 'var(--clay)';
-    form.arrival.focus();
-    return;
-  }
   const data = {
     submitted: new Date().toISOString(),
     name: form.name.value.trim(),
     email: form.email.value.trim(),
     attending: form.attending.value,
     guests: form.attending.value === 'Yes' ? form.guests.value : '0',
-    arrival: form.attending.value === 'Yes' ? form.arrival.value : '',
+    arrival: '',
     events: form.attending.value === 'Yes'
       ? 'Welcome dinner (Sun), Ceremony (Mon), Rooftop dinner (Mon)' : '',
     hotel: form.attending.value === 'Yes' ? form.hotel.value : '',
@@ -1046,7 +1018,6 @@ try {
     const r = form.querySelector(`input[name=attending][value="${prev.attending}"]`);
     if (r) { r.checked = true; attendingFields.classList.toggle('hidden', prev.attending !== 'Yes'); }
     if (prev.guests && prev.guests !== '0') form.guests.value = prev.guests;
-    if (prev.arrival) form.arrival.value = prev.arrival;
     if (prev.hotel) form.hotel.value = prev.hotel;
     form.dietary.value = prev.dietary || '';
     showThanks(prev);
